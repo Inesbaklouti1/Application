@@ -1,0 +1,16 @@
+[package]
+name = "rust_client_server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+socketcan = "1.7.0" 
+socketcan-isotp = "1.0.2"
+
+[[bin]]
+name = "can_client"
+path = "src/can_client.rs"
+
+[[bin]]
+name = "can_server"
+path = "src/can_server.rs"
