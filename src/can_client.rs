@@ -1,6 +1,7 @@
 use socketcan_isotp::{IsoTpSocket, Id,StandardId};
-use std::{error::Error,borrow::Cow,fs};
+use std::{error::Error,fs};
 use std::time::Duration;
+use std::thread::sleep;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -23,7 +24,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let rx_id = create_id(config.client.rx_id)?;
     let tx_id = create_id(config.client.tx_id)?;
     let mut socket = create_socket(&config.client.interface, rx_id, tx_id)?;
-    send_message(&mut socket, &config.client.message)
+    loop {
+        send_message(&mut socket, &config.client.message)?;
+        sleep(Duration::from_millis(10));
+    }
     
 }
 

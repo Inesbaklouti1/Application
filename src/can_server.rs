@@ -1,13 +1,11 @@
 use socketcan_isotp::{IsoTpSocket, Id, StandardId};
 use std::{error::Error,borrow::Cow,fs};
-use serde_json::from_reader;
-use std::env;
-use std::io::BufReader;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Config {
     pub server : ServerConfig,
+    
 }
 
 #[derive(Serialize, Deserialize, Debug)]
